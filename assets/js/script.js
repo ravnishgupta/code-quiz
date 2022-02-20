@@ -46,6 +46,8 @@ var questionsEl = document.getElementById("questions");
 var questionSpan = document.getElementById("questions");
 var timeLeft = 75;
 var result = document.getElementById("result");
+var timeInterval;
+var header = document.getElementById("header");
 
 
 function checkAnswer(question, answer){
@@ -61,13 +63,15 @@ function checkAnswer(question, answer){
         question++;
         showQuestions(question);
     }
+    else clearInterval(timeInterval);
 }
 
 function startQuiz() {
+    header.style.visibility = "hidden";
     showQuestions(0);
   
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var timeInterval = setInterval(function() {
+      timeInterval = setInterval(function() {
       timerEl.textContent = timeLeft;
       
       if (timeLeft === 0) {
@@ -112,10 +116,10 @@ function startQuiz() {
     rb4.setAttribute("onClick", "checkAnswer(" + n + ",4);");
 
     
-    label1.textContent = questions[n].choice1
-    label2.textContent = questions[n].choice2
-    label3.textContent = questions[n].choice3
-    label4.textContent = questions[n].choice4
+    label1.textContent = questions[n].choice1;
+    label2.textContent = questions[n].choice2;
+    label3.textContent = questions[n].choice3;
+    label4.textContent = questions[n].choice4;
 
     var ulEl = document.createElement("ul");
     ulEl.style.listStyleType = "none";
