@@ -1,5 +1,5 @@
 var questions = [
-    question1 = {
+    {
         text: "What are variables used for in JavaScript Programs?",
         choice1: "Storing numbers, dates, or other values",
         choice2: "Varying randomly",
@@ -7,7 +7,7 @@ var questions = [
         choice4: "None of the above",
         correctAnswer: 1
      },
-     question2 = {
+     {
         text: "Inside which HTML element do we put the JavaScript?",
         choice1: "<js>",
         choice2: "<scripting>",
@@ -15,7 +15,7 @@ var questions = [
         choice4: "<javscript>",
         correctAnswer : 3
      },
-     question3 ={
+     {
         text: "Which of the following is the structure of an if statement?",
         choice1: "if (conditional expression is true) thenexecute this codeend if",
         choice2: "if (conditional expression is true)execute this codeend if",
@@ -23,7 +23,7 @@ var questions = [
         choice4: "if (conditional expression is true) then {execute this code}",
         correctAnswer: 3
      },
-     question4 ={
+     {
         text: "What is meant by 'this' keyword in javascript?",
         choice1: "It refers current object",
         choice2: "It referes previous object",
@@ -31,7 +31,7 @@ var questions = [
         choice4: "None of the above",
         correctAnswer: 1
      },
-     question5 ={
+     {
         text: "Which of the following is not JavaScript Data Types?",
         choice1: "Undefined",
         choice2: "Number",
@@ -41,19 +41,29 @@ var questions = [
      }
 ];
 
-var btn = document.getElementById("start");
 var timerEl = document.getElementById("time");
 var questionsEl = document.getElementById("questions");
 var questionSpan = document.getElementById("questions");
+var timeLeft = 75;
+var result = document.getElementById("result");
 
-btn.addEventListener("click", startQuiz);
 
-function checkAnswer(){
-    
+function checkAnswer(question, answer){
+    if (answer === questions[question].correctAnswer) {
+        result.textContent = "Correct"
+    }
+    else {
+      result.textContent = "Incorrect"
+      timeLeft -= 15;
+    }
+
+    if (question < questions.length-1) {
+        question++;
+        showQuestions(question);
+    }
 }
 
 function startQuiz() {
-    var timeLeft = 75;
     showQuestions(0);
   
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
@@ -62,14 +72,13 @@ function startQuiz() {
       
       if (timeLeft === 0) {
         clearInterval(timeInterval);
-       // displayMessage();
       }
       timeLeft--;
-      //displayMessage();
     },1000);
   }
 
   function showQuestions(n) {
+
     questionsEl.textContent = questions[n].text;
 
     var rb1 = document.createElement("INPUT");
@@ -85,19 +94,22 @@ function startQuiz() {
     rb1.setAttribute("type", "radio");
     rb1.setAttribute("name", "choice");
     rb1.setAttribute("value", 1);
-   rb1.onclick = checkAnswer();
+    rb1.setAttribute("onClick", "checkAnswer(" + n + ",1);");
 
     rb2.setAttribute("type", "radio");
     rb2.setAttribute("name", "choice");
     rb2.setAttribute("value", 2);
+    rb2.setAttribute("onClick", "checkAnswer(" + n + ",2);");
 
     rb3.setAttribute("type", "radio");
     rb3.setAttribute("name", "choice");
     rb3.setAttribute("value", 3);
+    rb3.setAttribute("onClick", "checkAnswer(" + n + ",3);");
 
     rb4.setAttribute("type", "radio");
     rb4.setAttribute("name", "choice");
     rb4.setAttribute("value", 4);
+    rb4.setAttribute("onClick", "checkAnswer(" + n + ",4);");
 
     
     label1.textContent = questions[n].choice1
