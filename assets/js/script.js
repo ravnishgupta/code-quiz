@@ -1,3 +1,12 @@
+var timerEl = document.getElementById("time");
+var questionsEl = document.getElementById("questions");
+var questionSpan = document.getElementById("questions");
+var timeLeft = 75;
+var result = document.getElementById("result");
+var timeInterval;
+var header = document.getElementById("header");
+var scoreDiv = document.getElementById("scoreDiv");
+
 var questions = [
     {
         text: "What are variables used for in JavaScript Programs?",
@@ -41,15 +50,6 @@ var questions = [
      }
 ];
 
-var timerEl = document.getElementById("time");
-var questionsEl = document.getElementById("questions");
-var questionSpan = document.getElementById("questions");
-var timeLeft = 75;
-var result = document.getElementById("result");
-var timeInterval;
-var header = document.getElementById("header");
-
-
 function checkAnswer(question, answer){
     if (answer === questions[question].correctAnswer) {
         result.textContent = "Correct"
@@ -64,26 +64,35 @@ function checkAnswer(question, answer){
         showQuestions(question);
     }
     else {
-       clearInterval(timeInterval);
        showScores();
     }
 }
 
 function showScores(){
+   clearInterval(timeInterval);
    questionSpan.style.visibility = "hidden";
    result.style.visibility = "hidden";
-   
+   scoreDiv.innerHTML = "<h2>All done. <p>Your final score is: " + timerEl.textContent + "</h2><p> Please enter your initials: <input type='text' id='initials' name='initials'> <button onClick=saveScore()>Submit</button>";
 }
 
+function saveScore() {
+   var initialVal = document.getElementById("initials").value;
+   //console.log(initialVal);
+   if (initialVal !== "") {
+      window.localStorage.setItem("score " + Date(), timerEl.textContent);
+   }
+   else alert("Please enter initials");
+}
 function startQuiz() {
     header.style.visibility = "hidden";
     showQuestions(0);
   
-      timeInterval = setInterval(function() {
+   timeInterval = setInterval(function() {
       timerEl.textContent = timeLeft;
       
       if (timeLeft === 0) {
         clearInterval(timeInterval);
+        showScores();
       }
       timeLeft--;
     },1000);
