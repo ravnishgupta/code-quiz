@@ -82,9 +82,11 @@ function saveScore() {
       if (localStorage.score) {
          localStorage.score = localStorage.score + ", " + initialVal + ' - ' + timerEl.textContent
       }
-      else 
+      else {
          window.localStorage.setItem("score", initialVal + ' - ' + timerEl.textContent);
-   }
+     }  
+     location.href = "high-scores.html";
+}
    else alert("Please enter initials");
 }
 function startQuiz() {
@@ -171,8 +173,8 @@ function startQuiz() {
   }
 
   function showAllScores() {
-   var highScoresDiv = document.getElementById("highScoresDiv");
-     var count = 0;
+    var highScoresDiv = document.getElementById("highScoresDiv");
+     var count = 1;
      var scores = localStorage.getItem('score').split(',');
      var sText = '';
      if (scores.length > 0) {
@@ -187,4 +189,12 @@ function startQuiz() {
 
   function goBack() {
      location.href = 'index.html';
+  }
+
+  function clearHighScores() {
+   if (localStorage.score) {
+      localStorage.removeItem('score');
+      location.href = 'high-scores.html'
+
+   }
   }
