@@ -1,6 +1,5 @@
 var timerEl = document.getElementById("time");
 var questionsEl = document.getElementById("questions");
-var questionSpan = document.getElementById("questions");
 var timeLeft = 75;
 var result = document.getElementById("result");
 var timeInterval;
@@ -35,7 +34,7 @@ var questions = [
      {
         text: "What is meant by 'this' keyword in javascript?",
         choice1: "It refers current object",
-        choice2: "It referes previous object",
+        choice2: "It refers previous object",
         choice3: "It is variable which contains value",
         choice4: "None of the above",
         correctAnswer: 1
@@ -52,10 +51,12 @@ var questions = [
 
 function checkAnswer(question, answer){
     if (answer === questions[question].correctAnswer) {
-        result.textContent = "Correct"
+        result.textContent = "Correct!";
+        result.className = "correct";
     }
     else {
-      result.textContent = "Incorrect"
+      result.textContent = "Incorrect!";
+      result.className = "incorrect";
       timeLeft -= 15;
     }
 
@@ -70,9 +71,9 @@ function checkAnswer(question, answer){
 
 function showScores(){
    clearInterval(timeInterval);
-   questionSpan.style.visibility = "hidden";
+   questionsEl.style.visibility = "hidden";
    result.style.visibility = "hidden";
-   scoreDiv.innerHTML = "<h2>All done. <p>Your final score is: " + timerEl.textContent + "</h2><p> Please enter your initials: <input type='text' id='initials' name='initials'> <button onClick=saveScore()>Submit</button>";
+   scoreDiv.innerHTML = "<h2>All done! <p>Your final score is: " + timerEl.textContent + "</h2><p> Please enter your initials: <input type='text' id='initials' name='initials'> <button onClick=saveScore()>Submit</button>";
 }
 
 function saveScore() {
@@ -87,7 +88,7 @@ function saveScore() {
      }  
      location.href = "high-scores.html";
 }
-   else alert("Please enter initials");
+   else alert("Please enter your initials.");
 }
 function startQuiz() {
     header.style.visibility = "hidden";

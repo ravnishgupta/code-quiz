@@ -5,26 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
     <section>
         <header>
-            <div>
-                <span style="float: left;"><a href="high-scores.html">View High Scores</a></span>
-                <span style="float: right;">Time: <span id="time"></span></span>
-            </div>
+            <span class="viewHiScoreSpan"><a href="high-scores.html">View High Scores</a></span>
+            <span class="timeSpan">Time: <span id="time"></span>    
         </header>
     </section>
     <section>
         <main>
             <span style="text-align: center;" id="header">
-                <div><h2>Coding Quiz</h2></p></div>
-                <div><p>Try to answer all questions within the time limit</p></div>
-                <p><button id="start" onClick="startQuiz();">Start Quiz</button></p>
+                <div><h2>Coding Quiz</h2></div>
+                <div style="padding: 10px;">Try to answer all questions within the time limit</div>
+                <div style="padding: 10px;"><button id="start" onClick="startQuiz();">Start Quiz</button></div>
             </span>
             <div>
-                <span id="questions"></span>
-                <span id="result"></span>
+                <span style="padding: 20px;" id="questions"></span>
+                <span style="padding: 20px;" id="result"></span>
             </div>
             <span style="text-align: center;" id="scoreSpan">
                 <div id="scoreDiv"></div>
