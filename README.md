@@ -1,6 +1,6 @@
 # Javascript Coding Quiz
 This project uses Javascript to dynamically change the appearance of web pages. It also uses Web APIs to:
-1. Save data to and retrieve data from `localStorage`.
+1. Save data to and retrieve data from `localStorage`
 1. Start timer using `setInterval()` 
 1. Stop timer using `clearInteral()`
 
