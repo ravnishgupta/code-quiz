@@ -79,7 +79,11 @@ function saveScore() {
    var initialVal = document.getElementById("initials").value;
    //console.log(initialVal);
    if (initialVal !== "") {
-      window.localStorage.setItem("score " + Date(), timerEl.textContent);
+      if (localStorage.score) {
+         localStorage.score = localStorage.score + ", " + initialVal + ' - ' + timerEl.textContent
+      }
+      else 
+         window.localStorage.setItem("score", initialVal + ' - ' + timerEl.textContent);
    }
    else alert("Please enter initials");
 }
@@ -164,4 +168,23 @@ function startQuiz() {
     ulEl.appendChild(liEl4);
 
      questionsEl.appendChild(ulEl);
+  }
+
+  function showAllScores() {
+   var highScoresDiv = document.getElementById("highScoresDiv");
+     var count = 0;
+     var scores = localStorage.getItem('score').split(',');
+     var sText = '';
+     if (scores.length > 0) {
+        debugger;
+        for (var i=0; i<scores.length; i++) {
+          sText = sText + count++ + '. ' + scores[i].toString() + "<p>";
+        }
+        highScoresDiv.innerHTML = sText;
+     }
+     
+  }
+
+  function goBack() {
+     location.href = 'index.html';
   }
