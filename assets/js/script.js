@@ -63,14 +63,22 @@ function checkAnswer(question, answer){
         question++;
         showQuestions(question);
     }
-    else clearInterval(timeInterval);
+    else {
+       clearInterval(timeInterval);
+       showScores();
+    }
+}
+
+function showScores(){
+   questionSpan.style.visibility = "hidden";
+   result.style.visibility = "hidden";
+   
 }
 
 function startQuiz() {
     header.style.visibility = "hidden";
     showQuestions(0);
   
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
       timeInterval = setInterval(function() {
       timerEl.textContent = timeLeft;
       
