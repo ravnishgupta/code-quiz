@@ -78,7 +78,6 @@ function showScores(){
 
 function saveScore() {
    var initialVal = document.getElementById("initials").value;
-   //console.log(initialVal);
    if (initialVal !== "") {
       if (localStorage.score) {
          localStorage.score = localStorage.score + ", " + initialVal + ' - ' + timerEl.textContent
